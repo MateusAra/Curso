@@ -34,4 +34,18 @@ describe('Scenarios where authentication is a pre-requirement', () => {
       expect(response.state).to.equal('Complete')
     })
   })
+  
+  it('logs out', () => {
+    cy.visit('/')
+    cy.wait('@getNotes',{timeout: 15000})
+    if (Cypress.config('viewportWidth') < Cypress.env('viewportWidthBreakpoint')) {
+      cy.get('.navbar-toggle.collapsed')
+        .should('be.visible')
+        .click()
+    }
+    /* ==== Generated with Cypress Studio ==== */
+    cy.get('.nav > :nth-child(2) > a').click();
+    cy.get('#email').should('be.visible');
+    /* ==== End Cypress Studio ==== */
+  })
 })
